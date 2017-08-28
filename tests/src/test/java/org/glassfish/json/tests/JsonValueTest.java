@@ -55,6 +55,16 @@ import org.junit.Test;
  */
 public class JsonValueTest {
 
+    @Test(expected = UnsupportedOperationException.class)
+    public void ensureImmutableArray() {
+        JsonValue.EMPTY_JSON_ARRAY.add(JsonValue.TRUE);
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void ensureImmutableObject() {
+        JsonValue.EMPTY_JSON_OBJECT.put("test", JsonValue.TRUE);
+    }
+
     @Test
     public void serialization() {
         byte[] data = serialize(JsonValue.TRUE);
